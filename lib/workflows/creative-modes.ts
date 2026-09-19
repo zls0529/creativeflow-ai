@@ -1,0 +1,39 @@
+import data from '@/comfyui/registry.json';
+import type {CreativeMode,CreativeSelection,RoutingDecision} from '@/types/creative-mode';
+export const creativeModes: {id:CreativeMode;name:string;description:string;intent:string;required:string[];optional:string[];support:string;evidence:string}[]=[
+ {id:'commercial_poster',name:'Commercial Poster',description:'A campaign key visual with strong composition, product prominence and copy space.',intent:'One strong product key visual; focal hierarchy, controlled lighting, prominent product, copy-safe space and campaign mood. No people unless explicitly requested.',required:['brand brief','campaign objective','product'],optional:[],support:'Experimental · Hero only',evidence:'3/3 development generations, no OOM; strong composition, limited exact SKU fidelity.'},
+ {id:'product_hero',name:'Product Hero',description:'A clean product-focused visual prioritizing original product identity.',intent:'Product fidelity, clean presentation, restrained background, accurate product details and lighting; minimal visual competition.',required:['brand brief','campaign objective','product'],optional:['style'],support:'Experimental',evidence:'Segmentation and compositing proof of concept; grounding and seams still require review.'},
+ {id:'lifestyle',name:'Lifestyle Campaign',description:'People and products in a believable everyday setting.',intent:'Natural person–product interaction, believable everyday setting, clear product visibility and coherent lighting.',required:['brand brief','campaign objective'],optional:['product','style'],support:'Legacy fallback · no dedicated Lifestyle workflow',evidence:'Uses existing quality workflow. A professional Lifestyle workflow has not been validated.'},
+ {id:'sports',name:'Sports Advertising',description:'Dynamic sports imagery with pose-aware generation.',intent:'Dynamic athletic composition, plausible anatomy, complete visible footwear, sharp product, controlled motion and clear action.',required:['brand brief','campaign objective'],optional:['pose','product','style'],support:'Legacy sports workflows',evidence:'Sports / sports_pose saved trials; anatomy and exact product fidelity remain limited.'},
+ {id:'social_fast',name:'Social Fast',description:'Lightweight generation for fast social concepts.',intent:'Simple readable focal hierarchy, efficient uncluttered composition and placement-safe copy space.',required:['brand brief','campaign objective'],optional:['product','style'],support:'Legacy',evidence:'Existing basic workflow; speed intent is not a quality certification.'},
+ {id:'custom',name:'Custom / Advanced',description:'Choose a compatible registered workflow for expert testing.',intent:'Follow the explicitly selected workflow contract and placement; preserve the brief and brand constraints.',required:['brand brief','campaign objective','workflow selection'],optional:['product','style','pose'],support:'Depends on selected workflow',evidence:'Explicit selection does not change workflow maturity.'}
+];
+export function modeDefinition(id:CreativeMode){return creativeModes.find(m=>m.id===id)!;}
+export const routableModes:Record<string,RoutingDecision['providerMode']>={commercial_poster_v1:'commercial_poster_v1',product_hero_v1:'product_hero_v1',legacy_basic_v1:'basic',legacy_quality_v1:'quality',legacy_sports_v1:'sports',legacy_sports_pose_v1:'sports_pose'};
+export const creativeWorkflowCatalog=data.filter(w=>w.kind==='workflow'&&w.version==='1.0.0'&&w.id in routableModes);
+type Placement=RoutingDecision['placement'];
+type Reference={id:string;role:string};
+export function routeCreative(input:{selection:CreativeSelection;placement:Placement;references:Reference[];available?:boolean;unavailableReason?:string}):RoutingDecision{
+ const {selection,placement,references}=input,pose=references.some(r=>r.role==='pose'),products=references.filter(r=>r.role==='product');
+ const id=({commercial_poster:'commercial_poster_v1',product_hero:'product_hero_v1',lifestyle:'legacy_quality_v1',sports:pose?'legacy_sports_pose_v1':'legacy_sports_v1',social_fast:'legacy_basic_v1',custom:selection.override?.workflowId??'missing'} satisfies Record<CreativeMode,string>)[selection.mode];
+ const selectedId=selection.override?.workflowId??id,w=creativeWorkflowCatalog.find(w=>w.id===selectedId),blockers:string[]=[],warnings:string[]=[];
+ if(!w)blockers.push('Select an executable registered workflow supported by CreativeFlow.');
+ if(w&&!Object.keys(w.outputProfiles).includes(placement))blockers.push('This workflow does not support '+placement+'. Choose a supported placement or another mode.');
+ if((w?.requiredInputs as string[]|undefined)?.includes('product')&&products.length!==1)blockers.push('Exactly one selected product reference is required.');
+ if(selectedId==='legacy_sports_pose_v1'&&!pose)blockers.push('A pose reference is required.');
+ if(selectedId!=='commercial_poster_v1')for(const role of ['product','style','pose'])if(references.filter(r=>r.role===role||(role==='style'&&r.role==='reference')).length>1)blockers.push('Select only one '+role+' reference for this workflow.');
+ if(pose&&!['legacy_sports_pose_v1','commercial_poster_v1','product_hero_v1'].includes(selectedId))blockers.push('This workflow cannot consume the supplied pose reference. Choose Sports Advertising or remove the pose input.');
+ if(selectedId==='commercial_poster_v1'&&references.some(r=>r.role==='style'||r.role==='reference'))warnings.push('Only the primary product is used; style conditioning is unsupported.');
+ if(['commercial_poster_v1','product_hero_v1'].includes(selectedId)&&pose)warnings.push('This product-only workflow does not use pose conditioning.');
+ if(selection.mode==='lifestyle')warnings.push('No dedicated Lifestyle workflow exists; this explicitly uses legacy quality.');
+ if(input.available===false)blockers.push(input.unavailableReason||'Selected workflow dependencies unavailable.');
+ const reason=selection.override?'Manual override: '+selection.override.reason:selection.mode==='sports'?(pose?'Sports Advertising with pose reference → sports_pose.':'Sports Advertising without pose reference → sports.'):'Explicit '+modeDefinition(selection.mode).name+' mode.';
+ return {creativeMode:selection.mode,placement,recommended:{id,version:'1.0.0'},selected:{id:selectedId,version:w?.version??'1.0.0'},providerMode:routableModes[selectedId]??'basic',reason,maturity:w?.status==='deprecated_candidate'?'deprecated_candidate':w?.releaseState??'unavailable',requirements:w?.requiredInputs??[],warnings,blockers,fallbackRecommendation:blockers.length?'Fix the requirement, choose another Creative Mode, or explicitly select a compatible advanced workflow. No automatic fallback.':null,override:selection.override,referenceIds:references.map(r=>r.id),productSourceId:products.length===1?products[0].id:undefined};
+}
+export function compatibleWorkflows(placement:Placement,references:Reference[]){return creativeWorkflowCatalog.filter(w=>!routeCreative({selection:{mode:'custom',override:{workflowId:w.id,version:'1.0.0',reason:'Compatibility preview'}},placement,references}).blockers.length);}
+export function creativeIntent(selection?:CreativeSelection){
+ if(!selection)return undefined;
+ const routed=routeCreative({selection,placement:'hero',references:[]}),selected=creativeWorkflowCatalog.find(w=>w.id===routed.selected.id);
+ const workflowMode:Record<string,CreativeMode>={commercial_poster_v1:'commercial_poster',product_hero_v1:'product_hero',legacy_sports_v1:'sports',legacy_sports_pose_v1:'sports',legacy_quality_v1:'lifestyle',legacy_basic_v1:'social_fast'};
+ return {mode:selection.mode,intent:modeDefinition(selection.mode).intent,...(selected?{workflow:selected.displayName,supportedPlacements:Object.keys(selected.outputProfiles),...(selection.override?{workflowIntent:modeDefinition(workflowMode[selected.id]).intent}:{}),contract:selected.knownLimitations}:{} )};
+}

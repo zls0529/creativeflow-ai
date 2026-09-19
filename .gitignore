@@ -1,0 +1,39 @@
+node_modules/
+.next/
+.env
+.env.*
+!.env.example
+prisma/*.db*
+storage/
+*.tsbuildinfo
+test-results/
+
+# Local AI installations, model weights, references and diagnostic output
+external/
+*.log
+/shoes.jpg
+/reference.jpg
+**/models/
+*.safetensors
+*.ckpt
+*.pth
+*.pt
+*.bin
+*.gguf
+*.onnx
+*.zip
+*.7z
+*.pem
+*.key
+# Local developer reports; public summaries live in Markdown
+/docs/*-verification.json
+/docs/*-snapshot.json
+/docs/repair-proposal.json
+/docs/usage-history-integrity.json
+
+# Local tool caches and temporary files
+__pycache__/
+*.pyc
+.cache/
+*.tmp
+*.bak

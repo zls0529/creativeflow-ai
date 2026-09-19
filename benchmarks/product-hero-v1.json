@@ -1,0 +1,75 @@
+{
+  "fixture": {
+    "id": "B01",
+    "version": 1,
+    "category": "product_hero",
+    "campaignBrief": "AERON RUN cream/grey shoe; premium studio hero with exact supplied-view product and room for separate typography.",
+    "placement": "hero",
+    "fixedPrompt": {
+      "positive": "Create a premium product hero for the exact single cream-and-grey shoe in P1, using its supplied camera view. Keep the complete silhouette, cream sole profile, grey collar, translucent layered overlays and striped mesh. Place one shoe on the right half on a dark navy matte plinth, soft cyan light in the background, neutral product illumination, subtle grounded contact shadow. Keep the left 35 percent visually quiet for later copy. No people, no added text or logos. Preserve the product's original colors and details.",
+      "negative": "duplicate product, extra shoe, missing product parts, invented vents, deformed sole, altered product color, illegible added text, unrequested logo, watermark, extra person, duplicated limbs, missing feet, twisted ankle, malformed hands, blurred product, cropped product"
+    },
+    "seeds": [
+      2026091701,
+      2026091702,
+      2026091703,
+      2026091704,
+      2026091705,
+      2026091706,
+      2026091707,
+      2026091708,
+      2026091709,
+      2026091710
+    ],
+    "references": [
+      {
+        "id": "P1",
+        "role": "product",
+        "file": "shoes.jpg",
+        "sha256": "31f663e07ce50cd5aa78239b893dbd2ae1af842d51516871986f4de1e67c3ad6"
+      }
+    ],
+    "expectedWorkflow": {
+      "id": "product_hero_v1",
+      "version": "1.0.0"
+    },
+    "targetWorkflow": {
+      "id": "product_hero_v1",
+      "version": "1.0.0"
+    },
+    "outputSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "evaluationCriteria": [
+      "silhouette/landmark correspondence; protected-core pixel error after declared transform; color patches; product occupancy 20–40% canvas; left35% safe area; plausible shadow. Vision priorities: product_visibility, visual_hierarchy, composition, colour_consistency, campaign_relevance."
+    ],
+    "blockerDefinitions": [
+      "changed construction/print, doubled product, missing heel/toe, gross halo, source-color drift, copy-space invasion."
+    ],
+    "humanReviewChecklist": [
+      "zoom sole/mesh/edges against P1, check exact count and lighting integration."
+    ],
+    "limitations": [
+      "Only the supplied private local reference is available; no broad commercial claim."
+    ]
+  },
+  "campaignId": "cmu416g9w0000v16gqandk68k",
+  "assetId": "cmu416ga50006v16gz8pcmacq",
+  "input": {
+    "sourceId": "48cd037e-a296-4d34-99b7-0e7a8dd4e2e3",
+    "segmentation": "sam",
+    "sourceRegion": {
+      "x": 0.18,
+      "y": 0.26,
+      "width": 0.7,
+      "height": 0.49
+    },
+    "placement": "right",
+    "scale": 0.56,
+    "copySpace": "left",
+    "seed": 2026091701,
+    "backgroundDirection": "An empty dark navy matte studio plinth with soft cyan background light, neutral soft front illumination, a horizontal support surface at the lower two thirds, quiet empty left 35 percent for later copy. No foreground object, shoes, people, text or logos."
+  },
+  "status": "prepared_not_executed"
+}

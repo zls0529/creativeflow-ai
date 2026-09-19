@@ -1,0 +1,6 @@
+{
+ "1":{"class_type":"LoadImage","inputs":{"image":"{{source}}"}},
+ "2":{"class_type":"easy imageRemBg","inputs":{"images":["1",0],"rem_mode":"RMBG-1.4","image_output":"Hide","save_prefix":"creativeflow-rembg","torchscript_jit":false}},
+ "7":{"class_type":"MaskToImage","inputs":{"mask":["2",1]}},
+ "9":{"class_type":"SaveImage","inputs":{"images":["7",0],"filename_prefix":"creativeflow-product-mask-rembg"}}
+}

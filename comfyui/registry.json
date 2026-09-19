@@ -1,0 +1,1355 @@
+[
+  {
+    "id": "legacy_basic_v1",
+    "version": "1.0.0",
+    "displayName": "Basic",
+    "useCase": "social_fast",
+    "kind": "workflow",
+    "status": "legacy",
+    "releaseState": "legacy",
+    "workflowTemplate": "basic_text2img_api.json",
+    "templateHash": "03bcba48afc2a218bdef670054c1d28a62d31e879cf9b6762733a4563c6c6081",
+    "checkpoint": {
+      "family": "sd15",
+      "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+      "defaultName": null
+    },
+    "requiredNodes": [
+      "KSampler",
+      "CheckpointLoaderSimple",
+      "EmptyLatentImage",
+      "CLIPTextEncode",
+      "VAEDecode",
+      "SaveImage"
+    ],
+    "requiredModels": [
+      {
+        "role": "checkpoint",
+        "node": "CheckpointLoaderSimple",
+        "input": "ckpt_name",
+        "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+        "defaultName": null
+      }
+    ],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style"
+    ],
+    "requiredInputs": [
+      "prompt"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style"
+    ],
+    "qualityTiers": [
+      "fast",
+      "standard"
+    ],
+    "expectedVRAM": {
+      "minGiB": 4,
+      "maxGiB": 8,
+      "measured": false
+    },
+    "defaultParameters": {
+      "steps": 20,
+      "cfg": 7,
+      "sampler": "euler",
+      "scheduler": "normal",
+      "denoise": 1
+    },
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "Limited selected live examples; not a commercial stability benchmark.",
+      "Historical generations lack complete settings; do not backfill.",
+      "Registry parameters describe defaults; actual environment overrides are recorded from the submitted graph."
+    ],
+    "benchmarkStatus": "limited_live_evidence"
+  },
+  {
+    "id": "legacy_quality_v1",
+    "version": "1.0.0",
+    "displayName": "Quality",
+    "useCase": "lifestyle",
+    "kind": "workflow",
+    "status": "legacy",
+    "releaseState": "legacy",
+    "workflowTemplate": "human_quality_api.json",
+    "templateHash": "2ae09fb68b91c380cdedb0fd9591c090a809695508d8c808c9fe487b3c8c9e75",
+    "checkpoint": {
+      "family": "sd15",
+      "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+      "defaultName": null
+    },
+    "requiredNodes": [
+      "KSampler",
+      "CheckpointLoaderSimple",
+      "EmptyLatentImage",
+      "CLIPTextEncode",
+      "VAEDecode",
+      "SaveImage",
+      "ImageScale",
+      "VAEEncode"
+    ],
+    "requiredModels": [
+      {
+        "role": "checkpoint",
+        "node": "CheckpointLoaderSimple",
+        "input": "ckpt_name",
+        "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+        "defaultName": null
+      }
+    ],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style"
+    ],
+    "requiredInputs": [
+      "prompt"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style"
+    ],
+    "qualityTiers": [
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": {
+      "minGiB": 6,
+      "maxGiB": 10,
+      "measured": false
+    },
+    "defaultParameters": {
+      "steps": 28,
+      "cfg": 6,
+      "sampler": "dpmpp_2m",
+      "scheduler": "karras",
+      "refineSteps": 16,
+      "refineDenoise": 0.25
+    },
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "Limited selected live examples; not a commercial stability benchmark.",
+      "Historical generations lack complete settings; do not backfill.",
+      "Registry parameters describe defaults; actual environment overrides are recorded from the submitted graph."
+    ],
+    "benchmarkStatus": "limited_live_evidence"
+  },
+  {
+    "id": "legacy_sports_v1",
+    "version": "1.0.0",
+    "displayName": "Sports",
+    "useCase": "sports",
+    "kind": "workflow",
+    "status": "legacy",
+    "releaseState": "legacy",
+    "workflowTemplate": "sports_api.json",
+    "templateHash": "e20e173c6b0a0211fc123beb81362daed61885ec8ced2c7a867b696fd5e4a564",
+    "checkpoint": {
+      "family": "sd15",
+      "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+      "defaultName": null
+    },
+    "requiredNodes": [
+      "KSampler",
+      "CheckpointLoaderSimple",
+      "EmptyLatentImage",
+      "CLIPTextEncode",
+      "VAEDecode",
+      "SaveImage",
+      "ImageScale",
+      "VAEEncode",
+      "UltralyticsDetectorProvider",
+      "FaceDetailer"
+    ],
+    "requiredModels": [
+      {
+        "role": "checkpoint",
+        "node": "CheckpointLoaderSimple",
+        "input": "ckpt_name",
+        "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+        "defaultName": null
+      },
+      {
+        "role": "detector",
+        "node": "UltralyticsDetectorProvider",
+        "input": "model_name",
+        "environmentKey": "COMFYUI_SPORTS_FACE_DETECTOR",
+        "defaultName": "bbox/face_yolov8m.pt"
+      }
+    ],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style"
+    ],
+    "requiredInputs": [
+      "prompt"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style"
+    ],
+    "qualityTiers": [
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": {
+      "minGiB": 7,
+      "maxGiB": 11,
+      "measured": false
+    },
+    "defaultParameters": {
+      "steps": 32,
+      "cfg": 5.5,
+      "sampler": "dpmpp_2m",
+      "scheduler": "karras",
+      "refineSteps": 18,
+      "refineDenoise": 0.22,
+      "faceSteps": 16,
+      "faceDenoise": 0.22,
+      "faceEnabled": true
+    },
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "Limited selected live examples; not a commercial stability benchmark.",
+      "Historical generations lack complete settings; do not backfill.",
+      "Registry parameters describe defaults; actual environment overrides are recorded from the submitted graph."
+    ],
+    "benchmarkStatus": "limited_live_evidence"
+  },
+  {
+    "id": "legacy_sports_pose_v1",
+    "version": "1.0.0",
+    "displayName": "Sports with pose",
+    "useCase": "sports",
+    "kind": "workflow",
+    "status": "legacy",
+    "releaseState": "legacy",
+    "workflowTemplate": "sports_pose_api.json",
+    "templateHash": "98fae155226fcac64dce01115d11fb3af5aef29699293dac40db74d1abb1b959",
+    "checkpoint": {
+      "family": "sd15",
+      "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+      "defaultName": null
+    },
+    "requiredNodes": [
+      "KSampler",
+      "CheckpointLoaderSimple",
+      "EmptyLatentImage",
+      "CLIPTextEncode",
+      "VAEDecode",
+      "SaveImage",
+      "ImageScale",
+      "VAEEncode",
+      "UltralyticsDetectorProvider",
+      "FaceDetailer",
+      "LoadImage",
+      "OpenposePreprocessor",
+      "ControlNetLoader",
+      "ControlNetApplyAdvanced"
+    ],
+    "requiredModels": [
+      {
+        "role": "checkpoint",
+        "node": "CheckpointLoaderSimple",
+        "input": "ckpt_name",
+        "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+        "defaultName": null
+      },
+      {
+        "role": "controlnet",
+        "node": "ControlNetLoader",
+        "input": "control_net_name",
+        "environmentKey": "COMFYUI_OPENPOSE_MODEL",
+        "defaultName": "control_v11p_sd15_openpose_fp16.safetensors"
+      },
+      {
+        "role": "detector",
+        "node": "UltralyticsDetectorProvider",
+        "input": "model_name",
+        "environmentKey": "COMFYUI_SPORTS_FACE_DETECTOR",
+        "defaultName": "bbox/face_yolov8m.pt"
+      }
+    ],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style",
+      "pose"
+    ],
+    "requiredInputs": [
+      "prompt",
+      "pose"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style",
+      "pose"
+    ],
+    "qualityTiers": [
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": {
+      "minGiB": 8,
+      "maxGiB": 12,
+      "measured": false
+    },
+    "defaultParameters": {
+      "steps": 32,
+      "cfg": 5.5,
+      "sampler": "dpmpp_2m",
+      "scheduler": "karras",
+      "refineSteps": 18,
+      "refineDenoise": 0.22,
+      "faceSteps": 16,
+      "faceDenoise": 0.22,
+      "faceEnabled": true,
+      "poseStrength": 0.8,
+      "poseStart": 0,
+      "poseEnd": 0.85
+    },
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "Limited selected live examples; not a commercial stability benchmark.",
+      "Pose applies to base pass only; no exact shoe/ankle guarantee.",
+      "Registry parameters describe defaults; actual environment overrides are recorded from the submitted graph."
+    ],
+    "benchmarkStatus": "limited_live_evidence"
+  },
+  {
+    "id": "repair_v1",
+    "version": "1.0.0",
+    "displayName": "Manual region repair",
+    "useCase": "repair",
+    "kind": "workflow",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": "inpaint_repair_api.json",
+    "templateHash": "437d5c3b2e6900fefd72949c098629862e58ba96ff79b404cdfbf7959ffb42c2",
+    "checkpoint": {
+      "family": "sd15",
+      "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+      "defaultName": null
+    },
+    "requiredNodes": [
+      "LoadImage",
+      "KSampler",
+      "CheckpointLoaderSimple",
+      "VAEEncode",
+      "CLIPTextEncode",
+      "VAEDecode",
+      "SaveImage",
+      "ImageToMask",
+      "SetLatentNoiseMask",
+      "ImageCompositeMasked"
+    ],
+    "requiredModels": [
+      {
+        "role": "checkpoint",
+        "node": "CheckpointLoaderSimple",
+        "input": "ckpt_name",
+        "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+        "defaultName": null
+      }
+    ],
+    "supportedInputs": [
+      "prompt",
+      "source",
+      "mask",
+      "product"
+    ],
+    "requiredInputs": [
+      "prompt",
+      "source",
+      "mask"
+    ],
+    "supportedReferenceTypes": [
+      "product"
+    ],
+    "qualityTiers": [
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": {
+      "minGiB": 5,
+      "maxGiB": 10,
+      "measured": false
+    },
+    "defaultParameters": {
+      "steps": 24,
+      "cfg": 5.5,
+      "sampler": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 0.4
+    },
+    "outputProfiles": {},
+    "knownLimitations": [
+      "Live repair quality has not been verified. Outside-mask preservation is tested offline.",
+      "Historical generations lack complete settings; do not backfill.",
+      "Registry parameters describe defaults; actual environment overrides are recorded from the submitted graph."
+    ],
+    "benchmarkStatus": "offline_only"
+  },
+  {
+    "id": "repair_face_v1",
+    "version": "1.0.0",
+    "displayName": "Automatic face repair",
+    "useCase": "repair",
+    "kind": "workflow",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": "face_repair_api.json",
+    "templateHash": "75f7bca2aee0dbbb4968f26622224cddc3f82e8fad09c945445106a62a23301d",
+    "checkpoint": {
+      "family": "sd15",
+      "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+      "defaultName": null
+    },
+    "requiredNodes": [
+      "LoadImage",
+      "CheckpointLoaderSimple",
+      "CLIPTextEncode",
+      "SaveImage",
+      "UltralyticsDetectorProvider",
+      "FaceDetailer",
+      "MaskToImage"
+    ],
+    "requiredModels": [
+      {
+        "role": "checkpoint",
+        "node": "CheckpointLoaderSimple",
+        "input": "ckpt_name",
+        "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+        "defaultName": null
+      },
+      {
+        "role": "detector",
+        "node": "UltralyticsDetectorProvider",
+        "input": "model_name",
+        "environmentKey": "COMFYUI_SPORTS_FACE_DETECTOR",
+        "defaultName": "bbox/face_yolov8m.pt"
+      }
+    ],
+    "supportedInputs": [
+      "prompt",
+      "source"
+    ],
+    "requiredInputs": [
+      "prompt",
+      "source"
+    ],
+    "supportedReferenceTypes": [],
+    "qualityTiers": [
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": {
+      "minGiB": 5,
+      "maxGiB": 9,
+      "measured": false
+    },
+    "defaultParameters": {
+      "steps": 24,
+      "cfg": 5.5,
+      "sampler": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 0.4
+    },
+    "outputProfiles": {},
+    "knownLimitations": [
+      "Live repair quality has not been verified. Outside-mask preservation is tested offline.",
+      "Automatic detection targets all detected faces; may miss occluded faces.",
+      "Registry parameters describe defaults; actual environment overrides are recorded from the submitted graph."
+    ],
+    "benchmarkStatus": "offline_only"
+  },
+  {
+    "id": "reference_sd15_v1",
+    "version": "1.0.0",
+    "displayName": "SD1.5 reference extension",
+    "useCase": "reference",
+    "kind": "extension",
+    "status": "deprecated_candidate",
+    "releaseState": "experimental",
+    "workflowTemplate": "reference_conditioning_api.json",
+    "templateHash": "80093f83b01930ef1180554024a1f27536d3e08fccdf065529441bce5a27fa8a",
+    "checkpoint": null,
+    "requiredNodes": [
+      "CLIPVisionLoader",
+      "IPAdapterModelLoader",
+      "LoadImage",
+      "IPAdapterAdvanced"
+    ],
+    "requiredModels": [
+      {
+        "role": "adapter",
+        "node": "IPAdapterModelLoader",
+        "input": "ipadapter_file",
+        "environmentKey": "COMFYUI_IPADAPTER_MODEL",
+        "defaultName": "ip-adapter-plus_sd15.safetensors"
+      },
+      {
+        "role": "encoder",
+        "node": "CLIPVisionLoader",
+        "input": "clip_name",
+        "environmentKey": "COMFYUI_CLIP_VISION_MODEL",
+        "defaultName": "CLIP-ViT-H-14-laion2B-s32B-b79_CLIP-ViT-H-14.safetensors"
+      }
+    ],
+    "supportedInputs": [
+      "product",
+      "style"
+    ],
+    "requiredInputs": [],
+    "supportedReferenceTypes": [
+      "product",
+      "style"
+    ],
+    "qualityTiers": [
+      "standard"
+    ],
+    "expectedVRAM": {
+      "minGiB": 1,
+      "maxGiB": 3,
+      "measured": false
+    },
+    "defaultParameters": {
+      "productStrength": 0.8,
+      "styleStrength": 0.4,
+      "start": 0,
+      "end": 1
+    },
+    "outputProfiles": {},
+    "knownLimitations": [
+      "Appearance conditioning is not exact product identity preservation. Additional memory depends on the base workflow.",
+      "Historical generations lack complete settings; do not backfill.",
+      "Registry parameters describe defaults; actual environment overrides are recorded from the submitted graph."
+    ],
+    "benchmarkStatus": "offline_only"
+  },
+  {
+    "id": "product_hero_v1",
+    "version": "0.1.0-proposed",
+    "displayName": "product hero v1",
+    "useCase": "product_hero",
+    "kind": "placeholder",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": null,
+    "templateHash": null,
+    "checkpoint": null,
+    "requiredNodes": [],
+    "requiredModels": [],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style",
+      "pose",
+      "source",
+      "mask"
+    ],
+    "requiredInputs": [
+      "prompt"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style",
+      "pose"
+    ],
+    "qualityTiers": [
+      "fast",
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": null,
+    "defaultParameters": {},
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "Design placeholder only. No executable template or validated input contract."
+    ],
+    "benchmarkStatus": "not_run"
+  },
+  {
+    "id": "commercial_poster_v1",
+    "version": "1.0.0",
+    "displayName": "Commercial Poster — Klein v1",
+    "useCase": "commercial_poster",
+    "kind": "workflow",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": "commercial_poster_v1.json",
+    "templateHash": "e4d93bcdd993bd8e31a3d02f7e608b2950236b54d34cd08bb3f9ea8fefdd8900",
+    "checkpoint": null,
+    "requiredNodes": [
+      "CFGGuider",
+      "CLIPLoader",
+      "CLIPTextEncode",
+      "ConditioningZeroOut",
+      "EmptyFlux2LatentImage",
+      "Flux2Scheduler",
+      "GetImageSize",
+      "ImageScaleToTotalPixels",
+      "KSamplerSelect",
+      "LoadImage",
+      "RandomNoise",
+      "ReferenceLatent",
+      "SamplerCustomAdvanced",
+      "SaveImage",
+      "UNETLoader",
+      "VAEDecode",
+      "VAEEncode",
+      "VAELoader"
+    ],
+    "requiredModels": [
+      {
+        "role": "checkpoint",
+        "node": "UNETLoader",
+        "input": "unet_name",
+        "defaultName": "flux-2-klein-4b-fp8.safetensors"
+      },
+      {
+        "role": "text_encoder",
+        "node": "CLIPLoader",
+        "input": "clip_name",
+        "defaultName": "qwen_3_4b.safetensors"
+      },
+      {
+        "role": "vae",
+        "node": "VAELoader",
+        "input": "vae_name",
+        "defaultName": "flux2-vae.safetensors"
+      }
+    ],
+    "supportedInputs": [
+      "prompt",
+      "product"
+    ],
+    "requiredInputs": [
+      "prompt",
+      "product"
+    ],
+    "supportedReferenceTypes": [
+      "product"
+    ],
+    "qualityTiers": [
+      "standard"
+    ],
+    "expectedVRAM": null,
+    "defaultParameters": {
+      "steps": 4,
+      "cfg": 1,
+      "batch_size": 1,
+      "sampler": "euler",
+      "scheduler": "Flux2Scheduler",
+      "seed": 20260919,
+      "referenceMegapixels": 0.5
+    },
+    "outputProfiles": {
+      "hero": {
+        "width": 880,
+        "height": 592
+      }
+    },
+    "knownLimitations": [
+      "Experimental; one local baseline is not commercial reliability or release validation.",
+      "Only hero 880x592, one product reference, four steps and batch one are supported.",
+      "Reference-guided regeneration can change product geometry, material and logos; no pixel preservation.",
+      "No separate negative conditioning, style reference, IP-Adapter or automatic paid review.",
+      "Observed global GPU memory is sampled and includes other processes; 10.72 GiB is not a maximum requirement."
+    ],
+    "benchmarkStatus": "limited_live_evidence",
+    "architecture": "FLUX.2 Klein 4B Distilled",
+    "validationObservation": {
+      "hardware": "RTX 4070 Super 12 GiB",
+      "width": 880,
+      "height": 592,
+      "steps": 4,
+      "batch": 1,
+      "runtimeSeconds": 10.04,
+      "sampledGlobalVRAMMiB": 10981,
+      "evidence": "docs/klein-workflow-validation.md",
+      "sourceWorkflow": "Comfy-Org/workflow_templates image_flux2_klein_image_edit_4b_distilled.json"
+    }
+  },
+  {
+    "id": "lifestyle_v1",
+    "version": "0.1.0-proposed",
+    "displayName": "lifestyle v1",
+    "useCase": "lifestyle",
+    "kind": "placeholder",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": null,
+    "templateHash": null,
+    "checkpoint": null,
+    "requiredNodes": [],
+    "requiredModels": [],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style",
+      "pose",
+      "source",
+      "mask"
+    ],
+    "requiredInputs": [
+      "prompt"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style",
+      "pose"
+    ],
+    "qualityTiers": [
+      "fast",
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": null,
+    "defaultParameters": {},
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "Design placeholder only. No executable template or validated input contract."
+    ],
+    "benchmarkStatus": "not_run"
+  },
+  {
+    "id": "sports_v2",
+    "version": "0.1.0-proposed",
+    "displayName": "sports v2",
+    "useCase": "sports",
+    "kind": "placeholder",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": null,
+    "templateHash": null,
+    "checkpoint": null,
+    "requiredNodes": [],
+    "requiredModels": [],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style",
+      "pose",
+      "source",
+      "mask"
+    ],
+    "requiredInputs": [
+      "prompt"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style",
+      "pose"
+    ],
+    "qualityTiers": [
+      "fast",
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": null,
+    "defaultParameters": {},
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "Design placeholder only. No executable template or validated input contract."
+    ],
+    "benchmarkStatus": "not_run"
+  },
+  {
+    "id": "ecommerce_product_v1",
+    "version": "0.1.0-proposed",
+    "displayName": "ecommerce product v1",
+    "useCase": "ecommerce_product",
+    "kind": "placeholder",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": null,
+    "templateHash": null,
+    "checkpoint": null,
+    "requiredNodes": [],
+    "requiredModels": [],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style",
+      "pose",
+      "source",
+      "mask"
+    ],
+    "requiredInputs": [
+      "prompt"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style",
+      "pose"
+    ],
+    "qualityTiers": [
+      "fast",
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": null,
+    "defaultParameters": {},
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "Design placeholder only. No executable template or validated input contract."
+    ],
+    "benchmarkStatus": "not_run"
+  },
+  {
+    "id": "social_fast_v1",
+    "version": "0.1.0-proposed",
+    "displayName": "social fast v1",
+    "useCase": "social_fast",
+    "kind": "placeholder",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": null,
+    "templateHash": null,
+    "checkpoint": null,
+    "requiredNodes": [],
+    "requiredModels": [],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style",
+      "pose",
+      "source",
+      "mask"
+    ],
+    "requiredInputs": [
+      "prompt"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style",
+      "pose"
+    ],
+    "qualityTiers": [
+      "fast",
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": null,
+    "defaultParameters": {},
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "Design placeholder only. No executable template or validated input contract."
+    ],
+    "benchmarkStatus": "not_run"
+  },
+  {
+    "id": "product_hero_v1",
+    "version": "1.0.0",
+    "displayName": "Product Hero v1",
+    "useCase": "product_hero",
+    "kind": "workflow",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": "product_hero_background_api.json",
+    "templateHash": "03bcba48afc2a218bdef670054c1d28a62d31e879cf9b6762733a4563c6c6081",
+    "checkpoint": {
+      "family": "sd15",
+      "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+      "defaultName": null
+    },
+    "requiredNodes": [
+      "KSampler",
+      "CheckpointLoaderSimple",
+      "EmptyLatentImage",
+      "CLIPTextEncode",
+      "VAEDecode",
+      "SaveImage"
+    ],
+    "requiredModels": [
+      {
+        "role": "checkpoint",
+        "node": "CheckpointLoaderSimple",
+        "input": "ckpt_name",
+        "environmentKey": "COMFYUI_CHECKPOINT_NAME",
+        "defaultName": null
+      }
+    ],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style"
+    ],
+    "requiredInputs": [
+      "product"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style"
+    ],
+    "qualityTiers": [
+      "professional"
+    ],
+    "expectedVRAM": {
+      "minGiB": 4,
+      "maxGiB": 8,
+      "measured": false
+    },
+    "defaultParameters": {
+      "steps": 20,
+      "cfg": 7,
+      "sampler": "euler",
+      "scheduler": "normal",
+      "denoise": 1
+    },
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "SAM extraction can omit product parts; human mask and identity review required.",
+      "Opaque core is preserved relative to declared resizing; no promise of unchanged original sampling.",
+      "Procedural grounding, edge-only colour matching; no true relighting or perspective reconstruction."
+    ],
+    "benchmarkStatus": "limited_live_evidence"
+  },
+  {
+    "id": "product_hero_sam_v1",
+    "version": "1.0.0",
+    "displayName": "Product Hero SAM extraction",
+    "useCase": "product_hero",
+    "kind": "extension",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": "product_hero_segmentation_api.json",
+    "templateHash": "961a9d2df65e193c16fa053f67cb02ae3d9e45ed8c9e9b04f1aadda1d6be612f",
+    "checkpoint": null,
+    "requiredNodes": [
+      "LoadImage",
+      "ImageToMask",
+      "MaskToSEGS",
+      "SAMLoader",
+      "SAMDetectorCombined",
+      "MaskToImage",
+      "SaveImage"
+    ],
+    "requiredModels": [
+      {
+        "role": "segmentation",
+        "node": "SAMLoader",
+        "input": "model_name",
+        "environmentKey": "COMFYUI_PRODUCT_HERO_SAM_MODEL",
+        "defaultName": "sam_vit_b_01ec64.pth"
+      }
+    ],
+    "supportedInputs": [
+      "product"
+    ],
+    "requiredInputs": [
+      "product"
+    ],
+    "supportedReferenceTypes": [
+      "product"
+    ],
+    "qualityTiers": [
+      "professional"
+    ],
+    "expectedVRAM": {
+      "minGiB": 4,
+      "maxGiB": 8,
+      "measured": false
+    },
+    "defaultParameters": {
+      "threshold": 0.93,
+      "device_mode": "AUTO",
+      "dilation": 0
+    },
+    "outputProfiles": {},
+    "knownLimitations": [
+      "Requires a supplied product bounding region and installed SAM checkpoint.",
+      "The source alpha path does not execute this segmentation template."
+    ],
+    "benchmarkStatus": "offline_only"
+  },
+  {
+    "id": "product_hero_sam_v1",
+    "version": "1.1.0",
+    "displayName": "Product Hero SAM extraction",
+    "useCase": "product_hero",
+    "kind": "extension",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": "product_hero_segmentation_guided_api.json",
+    "templateHash": "739b2e833c01d0b28dbf93c769c9c84eda7d5c6d46faf64780af4846e8906b28",
+    "checkpoint": null,
+    "requiredNodes": [
+      "LoadImage",
+      "ImageToMask",
+      "MaskToSEGS",
+      "SAMLoader",
+      "SAMDetectorCombined",
+      "MaskToImage",
+      "SaveImage"
+    ],
+    "requiredModels": [
+      {
+        "role": "segmentation",
+        "node": "SAMLoader",
+        "input": "model_name",
+        "environmentKey": "COMFYUI_PRODUCT_HERO_SAM_MODEL",
+        "defaultName": "sam_vit_b_01ec64.pth"
+      }
+    ],
+    "supportedInputs": [
+      "product"
+    ],
+    "requiredInputs": [
+      "product"
+    ],
+    "supportedReferenceTypes": [
+      "product"
+    ],
+    "qualityTiers": [
+      "professional"
+    ],
+    "expectedVRAM": {
+      "minGiB": 4,
+      "maxGiB": 8,
+      "measured": false
+    },
+    "defaultParameters": {
+      "threshold": 0.93,
+      "device_mode": "AUTO",
+      "dilation": 0
+    },
+    "outputProfiles": {},
+    "knownLimitations": [
+      "Box and centre foreground guidance; external negative grid disabled to avoid installed Impact Pack non-square coordinate bug.",
+      "Requires mask sanity checks and human completeness review."
+    ],
+    "benchmarkStatus": "offline_only"
+  },
+  {
+    "id": "product_hero_rembg_v1",
+    "version": "1.0.0",
+    "displayName": "Product Hero background removal",
+    "useCase": "product_hero",
+    "kind": "extension",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": "product_hero_rembg_api.json",
+    "templateHash": "856d65b78eaeb22a4def190abed6bb61f5869af5ead51b874cfbdf47d7866829",
+    "checkpoint": null,
+    "requiredNodes": [
+      "LoadImage",
+      "easy imageRemBg",
+      "MaskToImage",
+      "SaveImage"
+    ],
+    "requiredModels": [
+      {
+        "role": "segmentation",
+        "node": "easy imageRemBg",
+        "input": "rem_mode",
+        "defaultName": "RMBG-1.4"
+      }
+    ],
+    "supportedInputs": [
+      "product"
+    ],
+    "requiredInputs": [
+      "product"
+    ],
+    "supportedReferenceTypes": [
+      "product"
+    ],
+    "qualityTiers": [
+      "professional"
+    ],
+    "expectedVRAM": {
+      "minGiB": 4,
+      "maxGiB": 8,
+      "measured": false
+    },
+    "defaultParameters": {
+      "rem_mode": "RMBG-1.4"
+    },
+    "outputProfiles": {},
+    "knownLimitations": [
+      "Opt-in installed RMBG-1.4 weights required; commercial model licence is separate.",
+      "No automatic downloads."
+    ],
+    "benchmarkStatus": "limited_live_evidence"
+  },
+  {
+    "id": "commercial_poster_v1",
+    "version": "0.1.0-proposed",
+    "displayName": "commercial poster v1",
+    "useCase": "commercial_poster",
+    "kind": "placeholder",
+    "status": "experimental",
+    "releaseState": "experimental",
+    "workflowTemplate": null,
+    "templateHash": null,
+    "checkpoint": null,
+    "requiredNodes": [],
+    "requiredModels": [],
+    "supportedInputs": [
+      "prompt",
+      "product",
+      "style",
+      "pose",
+      "source",
+      "mask"
+    ],
+    "requiredInputs": [
+      "prompt"
+    ],
+    "supportedReferenceTypes": [
+      "product",
+      "style",
+      "pose"
+    ],
+    "qualityTiers": [
+      "fast",
+      "standard",
+      "professional"
+    ],
+    "expectedVRAM": null,
+    "defaultParameters": {},
+    "outputProfiles": {
+      "hero": {
+        "width": 1024,
+        "height": 768
+      },
+      "post": {
+        "width": 1024,
+        "height": 1024
+      },
+      "story": {
+        "width": 768,
+        "height": 1344
+      },
+      "banner": {
+        "width": 1536,
+        "height": 512
+      },
+      "product": {
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "knownLimitations": [
+      "Design placeholder only. No executable template or validated input contract."
+    ],
+    "benchmarkStatus": "not_run"
+  }
+]

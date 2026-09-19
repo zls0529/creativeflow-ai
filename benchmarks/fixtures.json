@@ -1,0 +1,341 @@
+[
+  {
+    "id": "B01",
+    "version": 1,
+    "category": "product_hero",
+    "campaignBrief": "AERON RUN cream/grey shoe; premium studio hero with exact supplied-view product and room for separate typography.",
+    "placement": "hero",
+    "fixedPrompt": {
+      "positive": "Create a premium product hero for the exact single cream-and-grey shoe in P1, using its supplied camera view. Keep the complete silhouette, cream sole profile, grey collar, translucent layered overlays and striped mesh. Place one shoe on the right half on a dark navy matte plinth, soft cyan light in the background, neutral product illumination, subtle grounded contact shadow. Keep the left 35 percent visually quiet for later copy. No people, no added text or logos. Preserve the product's original colors and details.",
+      "negative": "duplicate product, extra shoe, missing product parts, invented vents, deformed sole, altered product color, illegible added text, unrequested logo, watermark, extra person, duplicated limbs, missing feet, twisted ankle, malformed hands, blurred product, cropped product"
+    },
+    "seeds": [
+      2026091701,
+      2026091702,
+      2026091703,
+      2026091704,
+      2026091705,
+      2026091706,
+      2026091707,
+      2026091708,
+      2026091709,
+      2026091710
+    ],
+    "references": [
+      {
+        "id": "P1",
+        "role": "product",
+        "file": "shoes.jpg",
+        "sha256": "31f663e07ce50cd5aa78239b893dbd2ae1af842d51516871986f4de1e67c3ad6"
+      }
+    ],
+    "expectedWorkflow": {
+      "id": "legacy_quality_v1",
+      "version": "1.0.0"
+    },
+    "targetWorkflow": {
+      "id": "product_hero_v1",
+      "version": "1.0.0"
+    },
+    "outputSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "evaluationCriteria": [
+      "silhouette/landmark correspondence; protected-core pixel error after declared transform; color patches; product occupancy 20–40% canvas; left35% safe area; plausible shadow. Vision priorities: product_visibility, visual_hierarchy, composition, colour_consistency, campaign_relevance."
+    ],
+    "blockerDefinitions": [
+      "changed construction/print, doubled product, missing heel/toe, gross halo, source-color drift, copy-space invasion."
+    ],
+    "humanReviewChecklist": [
+      "zoom sole/mesh/edges against P1, check exact count and lighting integration."
+    ],
+    "limitations": [
+      "Only the supplied private local reference is available; no broad commercial claim."
+    ]
+  },
+  {
+    "id": "B02",
+    "version": 1,
+    "category": "commercial_poster",
+    "campaignBrief": "Midnight Pulse poster featuring the supplied product, not a runner; identity plus cinematic campaign atmosphere.",
+    "placement": "hero",
+    "fixedPrompt": {
+      "positive": "Build a cinematic Midnight Pulse running-shoe poster. Use exactly the single cream-and-grey shoe from P1 in its supplied view as the foreground hero at lower right, resting credibly on wet dark pavement. Keep its shape and product colors unchanged. Use a navy nighttime city background, cyan light trails behind the product and a restrained warm rim light. Leave the upper-left 35 percent quiet for copy. No person, no generated writing, no invented accessories, no duplicate shoes.",
+      "negative": "duplicate product, extra shoe, missing product parts, invented vents, deformed sole, altered product color, illegible added text, unrequested logo, watermark, extra person, duplicated limbs, missing feet, twisted ankle, malformed hands, blurred product, cropped product"
+    },
+    "seeds": [
+      2026091701,
+      2026091702,
+      2026091703,
+      2026091704,
+      2026091705,
+      2026091706,
+      2026091707,
+      2026091708,
+      2026091709,
+      2026091710
+    ],
+    "references": [
+      {
+        "id": "P1",
+        "role": "product",
+        "file": "shoes.jpg",
+        "sha256": "31f663e07ce50cd5aa78239b893dbd2ae1af842d51516871986f4de1e67c3ad6"
+      }
+    ],
+    "expectedWorkflow": {
+      "id": "legacy_quality_v1",
+      "version": "1.0.0"
+    },
+    "targetWorkflow": {
+      "id": "commercial_poster_v1",
+      "version": "0.1.0-proposed"
+    },
+    "outputSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "evaluationCriteria": [
+      "B01 identity plus 35% safe area, foreground/background separation, shadow/reflection agreement. Vision priorities: composition, visual_hierarchy, brand_consistency, campaign_relevance, prompt_adherence."
+    ],
+    "blockerDefinitions": [
+      "bright-studio substitution, recolored SKU, unreadable product at export, typography generated into image, impossible reflection."
+    ],
+    "humanReviewChecklist": [
+      "compare source and proposed product pixels, test an overlay box for actual copy fit; do not score “empty space” from prompt alone."
+    ],
+    "limitations": [
+      "Only the supplied private local reference is available; no broad commercial claim."
+    ]
+  },
+  {
+    "id": "B03",
+    "version": 1,
+    "category": "lifestyle",
+    "campaignBrief": "One adult preparing a shoe at a daylight bench; this tests human-product contact without requiring invented unseen shoe angles.",
+    "placement": "post",
+    "fixedPrompt": {
+      "positive": "Photograph one adult runner seated beside a simple bench in a daylight apartment, preparing for a run. The exact cream-and-grey shoe from P1 is on the bench in its supplied side view, fully visible, with one relaxed hand resting lightly at the heel without hiding the sole or mesh. Keep the other hand visible and naturally placed on the knee. Natural anatomy, soft window lighting, realistic scale and contact. One person and one featured shoe, no text, no invented product details. Leave the upper-left quarter uncluttered.",
+      "negative": "duplicate product, extra shoe, missing product parts, invented vents, deformed sole, altered product color, illegible added text, unrequested logo, watermark, extra person, duplicated limbs, missing feet, twisted ankle, malformed hands, blurred product, cropped product"
+    },
+    "seeds": [
+      2026091701,
+      2026091702,
+      2026091703,
+      2026091704,
+      2026091705,
+      2026091706,
+      2026091707,
+      2026091708,
+      2026091709,
+      2026091710
+    ],
+    "references": [
+      {
+        "id": "P1",
+        "role": "product",
+        "file": "shoes.jpg",
+        "sha256": "31f663e07ce50cd5aa78239b893dbd2ae1af842d51516871986f4de1e67c3ad6"
+      }
+    ],
+    "expectedWorkflow": {
+      "id": "legacy_quality_v1",
+      "version": "1.0.0"
+    },
+    "targetWorkflow": {
+      "id": "lifestyle_v1",
+      "version": "0.1.0-proposed"
+    },
+    "outputSize": {
+      "width": 1024,
+      "height": 1024
+    },
+    "evaluationCriteria": [
+      "visible product fidelity, skin/product occlusion order, number of hands/fingers where visible, face coherence and scale. Vision priorities: visual_quality, product_visibility, composition, prompt_adherence; integrity hands/body/product_structure."
+    ],
+    "blockerDefinitions": [
+      "fused hand/product, duplicated limbs, altered shoe, impossible support, subject count wrong."
+    ],
+    "humanReviewChecklist": [
+      "verify occlusion boundaries, hand contact and facial features. Success here **does not validate wearing/flexible footwear**; a wearing subcase needs matching-angle assets and a separate fixture version."
+    ],
+    "limitations": [
+      "Only the supplied private local reference is available; no broad commercial claim."
+    ]
+  },
+  {
+    "id": "B04",
+    "version": 1,
+    "category": "sports",
+    "campaignBrief": "Pose-controlled action with identifiable footwear; intentionally difficult stress case, allowed to fail.",
+    "placement": "hero",
+    "fixedPrompt": {
+      "positive": "One adult athlete running to the right with the broad torso, arm and leg layout of R1, full body and both feet fully inside frame. Wet urban street at night, navy scene, cyan background lights and warm rim lighting. Wear shoes matching P1's cream-and-grey color blocks, sole profile, collar and layered mesh construction. Sharp body and footwear; motion blur only in background light trails. Keep runner on the right two-thirds with quiet space on the left. No race bib, text, extra athlete, extra shoe or invented clothing accessories.",
+      "negative": "duplicate product, extra shoe, missing product parts, invented vents, deformed sole, altered product color, illegible added text, unrequested logo, watermark, extra person, duplicated limbs, missing feet, twisted ankle, malformed hands, blurred product, cropped product"
+    },
+    "seeds": [
+      2026091701,
+      2026091702,
+      2026091703,
+      2026091704,
+      2026091705,
+      2026091706,
+      2026091707,
+      2026091708,
+      2026091709,
+      2026091710
+    ],
+    "references": [
+      {
+        "id": "P1",
+        "role": "product",
+        "file": "shoes.jpg",
+        "sha256": "31f663e07ce50cd5aa78239b893dbd2ae1af842d51516871986f4de1e67c3ad6"
+      },
+      {
+        "id": "R1",
+        "role": "pose",
+        "file": "reference.jpg",
+        "sha256": "51f6e891eaeabb9afd3a04d200797cde809ff154687151dfd9a013154a75c386"
+      }
+    ],
+    "expectedWorkflow": {
+      "id": "legacy_sports_pose_v1",
+      "version": "1.0.0"
+    },
+    "targetWorkflow": {
+      "id": "sports_v2",
+      "version": "0.1.0-proposed"
+    },
+    "outputSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "evaluationCriteria": [
+      "peoplecount1; two complete shoes/feet; ankles/leg connections; normalized pose landmark distances after documented frame transform; visible shoe construction; face; copy space. Vision priorities: all eight, especially product_visibility, visual_quality and prompt_adherence; feet_ankles/pose_plausibility integrity."
+    ],
+    "blockerDefinitions": [
+      "extra/missing limbs, cropped/melted shoe, impossible ankle, tiny product, studio/garment pattern leakage. Human compares R1 and P1 separately; “not visible” is not identity success."
+    ],
+    "humanReviewChecklist": [
+      "compares R1 and P1 separately; “not visible” is not identity success."
+    ],
+    "limitations": [
+      "Single product view cannot validate exact worn-shoe identity."
+    ]
+  },
+  {
+    "id": "B05",
+    "version": 1,
+    "category": "ecommerce_product",
+    "campaignBrief": "Single supplied-view catalogue image. No generated alternate-angle claim.",
+    "placement": "product",
+    "fixedPrompt": {
+      "positive": "Create a clean catalogue image of exactly the single shoe in P1 in the same view. Center the complete product against a neutral near-white background with a subtle physically plausible ground shadow. Preserve cream-and-grey product colors, sole geometry, mesh pattern, overlays, collar and all existing product details. Product occupies 65 to 80 percent of image width. No people, additional shoe, decoration, new text, recoloring or invented angles.",
+      "negative": "duplicate product, extra shoe, missing product parts, invented vents, deformed sole, altered product color, illegible added text, unrequested logo, watermark, extra person, duplicated limbs, missing feet, twisted ankle, malformed hands, blurred product, cropped product"
+    },
+    "seeds": [
+      2026091701,
+      2026091702,
+      2026091703,
+      2026091704,
+      2026091705,
+      2026091706,
+      2026091707,
+      2026091708,
+      2026091709,
+      2026091710
+    ],
+    "references": [
+      {
+        "id": "P1",
+        "role": "product",
+        "file": "shoes.jpg",
+        "sha256": "31f663e07ce50cd5aa78239b893dbd2ae1af842d51516871986f4de1e67c3ad6"
+      }
+    ],
+    "expectedWorkflow": {
+      "id": "legacy_basic_v1",
+      "version": "1.0.0"
+    },
+    "targetWorkflow": {
+      "id": "ecommerce_product_v1",
+      "version": "0.1.0-proposed"
+    },
+    "outputSize": {
+      "width": 1024,
+      "height": 1024
+    },
+    "evaluationCriteria": [
+      "transformed-core equality, silhouette/edge halo, neutral background, occupancy, original details at100%. Vision priorities: product_visibility, colour_consistency, visual_quality, prompt_adherence; product_structure/duplicated_product_parts."
+    ],
+    "blockerDefinitions": [
+      "any source detail invented/deleted, wrong angle, crop, heavy color cast, duplicate product. Human signs off geometry and catalog truthfulness. Multiple views require separate real reference captures and immutable fixture entries."
+    ],
+    "humanReviewChecklist": [
+      "signs off geometry and catalog truthfulness. Multiple views require separate real reference captures and immutable fixture entries."
+    ],
+    "limitations": [
+      "Only the supplied private local reference is available; no broad commercial claim."
+    ]
+  },
+  {
+    "id": "B06",
+    "version": 1,
+    "category": "repair",
+    "campaignBrief": "Existing Midnight Pulse V7 rear shoe blur; improve one region while preserving the rest.",
+    "placement": "hero",
+    "fixedPrompt": {
+      "positive": "Repair the raised rear shoe into one complete crisp realistic cyan running shoe with an intact sole and natural ankle connection. Preserve its existing silhouette, foot direction, cyan color, nighttime lighting and runner identity. Change only the selected region.",
+      "negative": "duplicated shoe, missing foot, twisted ankle, extra foot, changed shoe color, changed face, changed pose, new text, seam, halo"
+    },
+    "seeds": [
+      2026091701,
+      2026091702,
+      2026091703,
+      2026091704,
+      2026091705,
+      2026091706,
+      2026091707,
+      2026091708,
+      2026091709,
+      2026091710
+    ],
+    "references": [
+      {
+        "id": "D1",
+        "role": "source",
+        "file": "storage/generated/40b024cb-f84e-400d-b4d4-e90d3a65cc80.png",
+        "sha256": "9907ae595ba1c586cf09aa2c42e357be863e4384c547342f04039ddd83520721"
+      }
+    ],
+    "expectedWorkflow": {
+      "id": "repair_v1",
+      "version": "1.0.0"
+    },
+    "outputSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "region": {
+      "x": 0.625,
+      "y": 0.505,
+      "width": 0.125,
+      "height": 0.16
+    },
+    "evaluationCriteria": [
+      "exact decoded RGBA equality where mask=0 (mandatory), changed target pixels>0, target clarity/ankle plausibility, seam continuity and no new blockers. Existing real source score69 can be reported historically; compare fresh paired reviews only when explicitly authorized and pinned to the same reviewer/config. Human inspects rear shoe crop, face, lighting, whole-image composition. A higher score without a visibly better target is not a success. Current status remains **not run**."
+    ],
+    "blockerDefinitions": [
+      "Any new defect, unchanged target, or any outside-mask pixel change."
+    ],
+    "humanReviewChecklist": [
+      "inspects rear shoe crop, face, lighting, whole-image composition. A higher score without a visibly better target is not a success. Current status remains **not run**."
+    ],
+    "limitations": [
+      "Only the supplied private local reference is available; no broad commercial claim.",
+      "Real repair verification remains unrequested and has not run."
+    ]
+  }
+]

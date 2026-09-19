@@ -1,0 +1,21 @@
+{
+  "protocol": "commercial-benchmark-v1",
+  "status": "design_only_not_executed",
+  "seedSet": [2026091701, 2026091702, 2026091703, 2026091704, 2026091705, 2026091706, 2026091707, 2026091708, 2026091709, 2026091710],
+  "references": {
+    "P1": {"file": "shoes.jpg", "sha256": "31f663e07ce50cd5aa78239b893dbd2ae1af842d51516871986f4de1e67c3ad6", "width": 6000, "height": 4000, "role": "product", "coverage": "single supplied view"},
+    "R1": {"file": "reference.jpg", "sha256": "51f6e891eaeabb9afd3a04d200797cde809ff154687151dfd9a013154a75c386", "width": 896, "height": 896, "role": "pose"},
+    "D1": {"file": "storage/generated/40b024cb-f84e-400d-b4d4-e90d3a65cc80.png", "sha256": "9907ae595ba1c586cf09aa2c42e357be863e4384c547342f04039ddd83520721", "width": 1024, "height": 768, "role": "repair_source", "generationId": "cmu5fd34j0001v1owmce8g3o4"}
+  },
+  "cases": [
+    {"id": "B01", "useCase": "product_hero", "references": ["P1"], "placement": "hero", "outputSize": [1024,768], "briefSection": "B01 — Product Hero"},
+    {"id": "B02", "useCase": "commercial_poster", "references": ["P1"], "placement": "hero", "outputSize": [1024,768], "briefSection": "B02 — Commercial Poster"},
+    {"id": "B03", "useCase": "lifestyle", "references": ["P1"], "placement": "post", "outputSize": [1024,1024], "briefSection": "B03 — Lifestyle Human"},
+    {"id": "B04", "useCase": "sports", "references": ["P1","R1"], "placement": "hero", "outputSize": [1024,768], "briefSection": "B04 — Sports", "strictWornProductIdentityEligible": false},
+    {"id": "B05", "useCase": "ecommerce_product", "references": ["P1"], "placement": "product", "outputSize": [1024,1024], "briefSection": "B05 — E-commerce / Catalogue"},
+    {"id": "B06", "useCase": "repair", "references": ["D1"], "placement": "hero", "outputSize": [1024,768], "briefSection": "B06 — Local Repair", "region": {"x":0.625,"y":0.505,"width":0.125,"height":0.16}, "sourceCriticFindingId":"blocking:1"}
+  ],
+  "fixedPromptSource": "docs/workflow-benchmark-plan.md",
+  "releaseMissing": ["approved alpha/core masks", "product geometry annotations", "multi-angle product captures", "additional rights-cleared product/person reference sets"],
+  "executionAuthorization": "Separate future task required. This manifest authorizes no generation or external upload."
+}

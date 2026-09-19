@@ -1,0 +1,59 @@
+{
+  "name": "creativeflow-ai",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "overrides": {
+    "postcss": "$postcss",
+    "@prisma/config": {
+      "effect": "^3.20.0",
+      "deepmerge-ts": "^8.0.0"
+    }
+  },
+  "scripts": {
+    "release:check": "node scripts/release-audit.mjs",
+    "dev": "node scripts/dev-all.mjs",
+    "build": "prisma generate && next build",
+    "start": "next start --hostname 127.0.0.1",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "db:push": "prisma db push",
+    "db:seed": "tsx --conditions=react-server prisma/seed.ts",
+    "setup": "node scripts/setup.mjs && prisma generate && prisma db push && tsx --conditions=react-server prisma/seed.ts",
+    "test": "tsx --conditions=react-server --test --test-concurrency=1 tests/workflow.test.ts tests/openai.test.ts tests/comfyui.test.ts tests/vision.test.ts tests/closed-loop.test.ts tests/sports.test.ts tests/pose.test.ts tests/references.test.ts tests/review-comparison.test.ts tests/brand-intelligence.test.ts tests/readiness.test.ts tests/jobs.test.ts tests/usage.test.ts tests/repair.test.ts tests/registry-benchmark.test.ts tests/product-hero.test.ts tests/segmentation.test.ts tests/commercial-poster.test.ts tests/creative-modes.test.ts",
+    "worker": "node --env-file=.env --import tsx --conditions=react-server scripts/worker.ts",
+    "dev:all": "node scripts/dev-all.mjs",
+    "workflow:benchmark": "node --env-file=.env --import tsx --conditions=react-server scripts/workflow-benchmark.ts",
+    "workflow:audit": "node --env-file=.env --import tsx --conditions=react-server scripts/audit-commercial-workflows.ts",
+    "workflow:product-hero": "node --env-file=.env --import tsx --conditions=react-server scripts/verify-product-hero.ts",
+    "workflow:product-segmentation": "node --env-file=.env --import tsx --conditions=react-server scripts/verify-product-segmentation.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "6.19.0",
+    "lucide-react": "^0.468.0",
+    "next": "^15.5.12",
+    "pdfjs-dist": "4.10.38",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "server-only": "0.0.1",
+    "sharp": "0.35.4",
+    "zod": "^3.24.0",
+    "zod-to-json-schema": "^3.24.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.5.12",
+    "postcss": "^8.5.28",
+    "prisma": "6.19.0",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

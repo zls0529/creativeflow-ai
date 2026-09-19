@@ -1,0 +1,10 @@
+{
+ "1":{"class_type":"LoadImage","inputs":{"image":"{{source}}"}},
+ "2":{"class_type":"LoadImage","inputs":{"image":"{{region}}"}},
+ "3":{"class_type":"ImageToMask","inputs":{"image":["2",0],"channel":"red"}},
+ "4":{"class_type":"MaskToSEGS","inputs":{"mask":["3",0],"combined":true,"crop_factor":1,"bbox_fill":true,"drop_size":10,"contour_fill":false}},
+ "5":{"class_type":"SAMLoader","inputs":{"model_name":"{{sam_model}}","device_mode":"AUTO"}},
+ "6":{"class_type":"SAMDetectorCombined","inputs":{"sam_model":["5",0],"segs":["4",0],"image":["1",0],"detection_hint":"center-1","dilation":0,"threshold":0.93,"bbox_expansion":0,"mask_hint_threshold":0.7,"mask_hint_use_negative":"Outter"}},
+ "7":{"class_type":"MaskToImage","inputs":{"mask":["6",0]}},
+ "9":{"class_type":"SaveImage","inputs":{"images":["7",0],"filename_prefix":"creativeflow-product-mask"}}
+}

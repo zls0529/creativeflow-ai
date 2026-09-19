@@ -1,0 +1,192 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "sqlite"
+  url = env("DATABASE_URL")
+}
+model Campaign {
+  creativeConfig String?
+  id String @id @default(cuid())
+  name String
+  brandName String
+  brief String
+  objective String
+  audience String
+  style String
+  colours String
+  status String @default("draft")
+  error String?
+  lockAt DateTime?
+  activeJobId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  brandProfile BrandProfile?
+  direction CreativeDirection?
+  assets CampaignAsset[]
+  runs AgentRun[]
+  uploads Upload[]
+  jobs ExecutionJob[]
+  usage UsageEvent[]
+}
+model BrandProfile {
+  id String @id @default(cuid())
+  campaignId String @unique
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  data String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model CreativeDirection {
+  id String @id @default(cuid())
+  campaignId String @unique
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  data String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model CampaignAsset {
+  id String @id @default(cuid())
+  campaignId String
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  kind String
+  name String
+  width Int
+  height Int
+  prompt String
+  status String @default("pending")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  generations Generation[]
+  @@unique([campaignId, kind])
+}
+model Generation {
+  id String @id @default(cuid())
+  assetId String
+  asset CampaignAsset @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  version Int
+  prompt String
+  imageUrl String
+  provider String
+  reason String
+  status String @default("generated")
+  jobId String?
+  jobAttempt Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  evaluation CriticEvaluation?
+  @@unique([assetId, version])
+}
+model ExecutionJob {
+  id String @id @default(cuid())
+  campaignId String
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  assetId String?
+  action String
+  payload String
+  requestKey String @unique
+  status String @default("queued")
+  stage String @default("Queued")
+  message String @default("Job queued")
+  failure String?
+  failureCode String?
+  attempt Int @default(1)
+  retryCount Int @default(0)
+  owner String?
+  heartbeatAt DateTime?
+  leaseUntil DateTime?
+  cancelRequestedAt DateTime?
+  createdAt DateTime @default(now())
+  startedAt DateTime?
+  completedAt DateTime?
+  updatedAt DateTime @updatedAt
+  attempts JobAttempt[]
+  events JobEvent[]
+  @@index([status, createdAt])
+  @@index([campaignId, createdAt])
+}
+model JobAttempt {
+  id String @id @default(cuid())
+  jobId String
+  job ExecutionJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  number Int
+  status String @default("queued")
+  failure String?
+  failureCode String?
+  createdAt DateTime @default(now())
+  startedAt DateTime?
+  completedAt DateTime?
+  @@unique([jobId, number])
+}
+model JobEvent {
+  id String @id @default(cuid())
+  jobId String
+  job ExecutionJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  attempt Int
+  stage String
+  message String
+  createdAt DateTime @default(now())
+  @@index([jobId, createdAt])
+}
+model WorkerLease {
+  id String @id
+  owner String?
+  leaseUntil DateTime?
+}
+model UsageEvent {
+  id String @id @default(cuid())
+  campaignId String
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  jobId String?
+  attempt Int?
+  assetId String?
+  generationId String?
+  refinementIndex Int?
+  provider String
+  category String
+  model String?
+  operation String
+  status String @default("pending")
+  createdAt DateTime @default(now())
+  durationMs Int?
+  inputTokens Int?
+  outputTokens Int?
+  cachedTokens Int?
+  totalTokens Int?
+  estimatedCostUsd Float?
+  pricingSnapshot String?
+  metadata String @default("{}")
+  @@index([campaignId, createdAt])
+  @@index([jobId, attempt])
+  @@index([generationId])
+}
+model CriticEvaluation {
+  id String @id @default(cuid())
+  generationId String @unique
+  generation Generation @relation(fields: [generationId], references: [id], onDelete: Cascade)
+  overall Int
+  data String
+  provider String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model AgentRun {
+  id String @id @default(cuid())
+  campaignId String
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  stage String
+  status String @default("pending")
+  message String @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Upload {
+  id String @id
+  campaignId String
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  name String
+  role String
+  mime String
+  size Int
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,80 @@
+{
+  "40": {
+    "class_type": "CLIPVisionLoader",
+    "inputs": {
+      "clip_name": "{{encoder}}"
+    }
+  },
+  "41": {
+    "class_type": "IPAdapterModelLoader",
+    "inputs": {
+      "ipadapter_file": "{{adapter}}"
+    }
+  },
+  "42": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "{{image}}"
+    }
+  },
+  "43": {
+    "class_type": "IPAdapterAdvanced",
+    "inputs": {
+      "model": [
+        "4",
+        0
+      ],
+      "ipadapter": [
+        "41",
+        0
+      ],
+      "clip_vision": [
+        "40",
+        0
+      ],
+      "image": [
+        "42",
+        0
+      ],
+      "weight": "{{strength}}",
+      "weight_type": "linear",
+      "combine_embeds": "concat",
+      "start_at": 0,
+      "end_at": 1,
+      "embeds_scaling": "V only"
+    }
+  },
+  "44": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "{{image}}"
+    }
+  },
+  "45": {
+    "class_type": "IPAdapterAdvanced",
+    "inputs": {
+      "model": [
+        "4",
+        0
+      ],
+      "ipadapter": [
+        "41",
+        0
+      ],
+      "clip_vision": [
+        "40",
+        0
+      ],
+      "image": [
+        "44",
+        0
+      ],
+      "weight": "{{strength}}",
+      "weight_type": "style transfer",
+      "combine_embeds": "concat",
+      "start_at": 0,
+      "end_at": 1,
+      "embeds_scaling": "V only"
+    }
+  }
+}
