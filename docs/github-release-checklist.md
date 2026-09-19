@@ -1,6 +1,6 @@
 # GitHub v1.0 release candidate checklist
 
-Prepared locally, 20 September 2026. **Not published.** This is a presentation release candidate, not production certification of its experimental image workflows.
+Prepared on 20 September 2026. Public repository: [zls0529/creativeflow-ai](https://github.com/zls0529/creativeflow-ai). This is a presentation release candidate, not production certification of its experimental image workflows.
 
 ## Completed
 
@@ -18,13 +18,17 @@ Prepared locally, 20 September 2026. **Not published.** This is a presentation r
 - [x] `.env.example` contains placeholders/mock defaults; `.env`, databases, storage, raw references, external installs, model weights, archives and logs are ignored.
 - [x] Publication-source allowlist secret/path/size scan: no findings. Real local credential values are checked without printing them. OpenAI Authorization header construction was inspected: it uses a server-side variable, not a literal key.
 
-## Remaining owner publication steps
+## Final publication checks
 
-- [ ] Confirm redistribution rights for the shoe reference/product design and curated generated media; replace gallery media if needed. MIT source licensing does not establish image rights.
-- [ ] Review the proposed publication file list before initializing/staging Git. At the preparation snapshot, this folder had no `.git` directory; the final release task now initializes Git and audits the actual staged file set before committing. “No secrets committed” cannot be asserted from a filesystem scan.
-- [ ] During final release preparation, inspect `git status`, `git ls-files` and the staged diff; run a tracked-file/history secret scanner before any push. Verify no `.env`, model weights, database, raw local diagnostics or private paths were staged. `.gitignore` alone cannot remove already tracked files.
-- [ ] Replace the README clone placeholder with the actual repository URL after choosing a repository.
-- [ ] Obtain explicit owner instruction to publish. No repository, push, release tag or cloud deployment was created here.
+- [x] Owner explicitly confirmed account `zls0529` and **Public** visibility before remote creation.
+- [x] Initialized `main` using the existing Git identity; initial commit `d5241e4cd1d058037bf2a478bf385419bbb99a92`.
+- [x] Audited all 238 staged files before committing: 2,783,537 bytes total, no detected credentials, forbidden model/data files or machine-specific source/documentation paths. Synthetic path-redaction fixtures remain in tests intentionally.
+- [x] First push succeeded using existing Git Credential Manager authentication. No tokens were printed or embedded in the remote URL.
+- [x] Public GitHub tree verified: `main`, 238 source/media files, no `.env`, private storage, databases or model weights. Largest file: curated poster PNG, 518,377 bytes.
+- [x] README clone URL updated; README and all three Mermaid diagrams render on GitHub. Main workspace image loads.
+- [x] Application MIT license and upstream workflow/model attribution retained; dependencies are installed separately.
+- Publication scope is source and curated concept-demo media. This does not certify rights to third-party product designs or turn experimental workflows into production-validated systems.
+- The requested annotated tag is `v1.0.0`; final remote tag verification is reported separately after pushing. No GitHub Release page or cloud deployment is requested.
 
 ## Reproduce local checks
 
