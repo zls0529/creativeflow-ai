@@ -20,4 +20,4 @@ Use saved results. Do not press Generate or paid Review while recording. No fina
 - Commercial Poster V1 is a concept demo, not an exact-product advertisement.
 - Show refinement as a supported optional capability; none ran for this campaign.
 - Human approval remains a genuine decision. The recording can stop at approval-ready.
-- Public GitHub URL is not yet available; do not invent one or imply publication.
+- Repository: https://github.com/zls0529/creativeflow-ai. Keep experimental workflow limitations visible.

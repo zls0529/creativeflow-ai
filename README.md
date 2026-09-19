@@ -4,7 +4,7 @@
 
 Local-first · TypeScript / Next.js · OpenAI Responses · ComfyUI · SQLite
 
-**v1.0 release candidate.** Mock mode is free to explore. Real workflows remain experimental unless their registry explicitly says otherwise. This repository has not been published as part of the release-preparation task.
+**v1.0 release candidate.** Mock mode is free to explore. Real workflows remain experimental unless their registry explicitly says otherwise. Source and demo materials are available in this repository; model weights and private local data are not bundled.
 
 ```mermaid
 flowchart LR
@@ -24,14 +24,14 @@ flowchart LR
 Install Node.js 22 LTS and npm (minimum Node 20.19). On Windows, use PowerShell in a writable project folder. A GPU and Python are **not** required for mock mode.
 
 ```bash
-git clone <your-repository-url> creativeflow-ai
+git clone https://github.com/zls0529/creativeflow-ai.git
 cd creativeflow-ai
 npm ci
 npm run setup
 npm run dev
 ```
 
-Open [CreativeFlow on localhost](http://127.0.0.1:3000). `npm run dev` starts both the web app and its local job worker; Ctrl+C stops them. `dev:all` remains an alias. The repository URL is a placeholder until the owner publishes it.
+Open [CreativeFlow on localhost](http://127.0.0.1:3000). `npm run dev` starts both the web app and its local job worker; Ctrl+C stops them. `dev:all` remains an alias.
 
 Setup creates `.env` only if missing, initializes SQLite and seeds **Quiet Energy** with five mock SVG compositions, V1/V2 history and simulated reviews. It does not overwrite existing settings or completed demo records. All three providers default to `mock`; seed providers are explicitly mock even if you already configured real credentials.
 
